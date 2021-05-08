@@ -1,19 +1,19 @@
 # Base image we are modifying from https://hub.docker.com/
-FROM node:current-alpine
+FROM node:14.15.4-alpine3.10
 
 # set working directory
 RUN mkdir -p /app
-
 WORKDIR /app
 
 # install and cache app dependencies
 COPY package.json /app/package.json
 RUN npm install
 
-COPY . /app/client
+COPY . /app
 
 # Exposing a specific PORT for viewing the application
-EXPOSE 3000
+EXPOSE 3020
+EXPOSE 35729
 
 # Run final command to kick off client build
-CMD ['npm', 'start']
+CMD ["npm", "start"]
